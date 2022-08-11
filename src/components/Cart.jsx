@@ -2,6 +2,7 @@ import React from "react";
 
 export default function Cart({ cart, deleteCart }) {
   let [count, setCount] = React.useState(1);
+
   let sum = () => {
     return setCount((preCount) => {
       preCount = preCount + 1;
@@ -14,6 +15,7 @@ export default function Cart({ cart, deleteCart }) {
       return preCount;
     });
   };
+
   let renderItem = () => {
     if (cart.length === 0) {
       return (
