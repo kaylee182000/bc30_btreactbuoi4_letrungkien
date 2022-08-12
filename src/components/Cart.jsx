@@ -1,21 +1,19 @@
 import React from "react";
 
-export default function Cart({ cart, deleteCart }) {
-  let [count, setCount] = React.useState(1);
-
-  let sum = () => {
-    return setCount((preCount) => {
-      preCount = preCount + 1;
-      return preCount;
-    });
-  };
-  let minus = () => {
-    return setCount((preCount) => {
-      preCount = preCount - 1;
-      return preCount;
-    });
-  };
-
+export default function Cart({ cart, deleteCart,updownTotalAmount,totalAmount }) {
+  // let [count, setCount] = React.useState(1);
+  // let sum = () => {
+  //   return setCount((preCount) => {
+  //     preCount = preCount + 1;
+  //     return preCount;
+  //   });
+  // };
+  // let minus = () => {
+  //   return setCount((preCount) => {
+  //     preCount = preCount - 1;
+  //     return preCount;
+  //   });
+  // };
   let renderItem = () => {
     if (cart.length === 0) {
       return (
@@ -41,23 +39,23 @@ export default function Cart({ cart, deleteCart }) {
               <button
                 className="btn btn-primary me-1"
                 onClick={() => {
-                  sum();
+                  updownTotalAmount(prod.maSP,true);
                 }}
               >
                 +
               </button>
-              {count}
+              <span>{prod.soLuong}</span>
               <button
                 className="btn btn-primary ms-1"
                 onClick={() => {
-                  minus();
+                  updownTotalAmount(prod.maSP,false);
                 }}
               >
                 -
               </button>
             </td>
             <td style={{ textAlign: "center" }}>{prod.giaBan}</td>
-            <td style={{ textAlign: "center" }}>{prod.giaBan} </td>
+            <td style={{ textAlign: "center" }}>{prod.giaBan * prod.soLuong} </td>
             <td>
               <button
                 className="btn btn-danger"
@@ -84,7 +82,7 @@ export default function Cart({ cart, deleteCart }) {
         >
           <i className="fa-solid fa-cart-shopping" />
           <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-            ({cart.length})
+            ({totalAmount})
           </span>
         </button>
       </div>
